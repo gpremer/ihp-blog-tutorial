@@ -21,6 +21,7 @@ instance Controller PostsController where
         post <- fetch postId
             >>= pure . modify #comments (orderByDesc #createdAt)
             >>= fetchRelated #comments
+        let hasComments = isEmpty post.comments 
         render ShowView { .. }
 
     action EditPostAction { postId } = do
