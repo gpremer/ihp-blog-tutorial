@@ -5,9 +5,7 @@ data IndexView = IndexView { posts :: [Post]  }
 
 instance View IndexView where
     html IndexView { .. } = [hsx|
-        {breadcrumb}
-
-        <h1>Index<a href={pathTo NewPostAction} class="btn btn-primary ms-4">+ New</a></h1>
+        <h1>Posts</h1>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -19,7 +17,10 @@ instance View IndexView where
                 </thead>
                 <tbody>{forEach posts renderPost}</tbody>
             </table>
-            
+        </div>
+
+        <div>
+            <a href={pathTo NewPostAction} class="btn btn-primary ms-4">+ New</a>
         </div>
     |]
         where
